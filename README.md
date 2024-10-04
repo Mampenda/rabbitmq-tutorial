@@ -221,12 +221,28 @@ tasks.register<JavaExec>("runReceiver"){
 	classpath = sourceSets["main"].runtimeClasspath
 }
 ```
-After which, I opened two terminals where I ran the lines 
+After which, I opened two terminals where I compiled and ran the code successfully.
+
+```
+$ ./gradlew runSender
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :runSender
+ [x] Sent 'Hello World!'
+
+BUILD SUCCESSFUL in 38s
+3 actionable tasks: 2 executed, 1 up-to-date
 
 ```
 
 ```
-That was all it took for me to be able to compile and run the code successfully.
+$ ./gradlew runReceiver
+Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for details
 
+> Task :runReceiver
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 'Hello World!'
+<=========----> 75% EXECUTING [1m 17s]
+> :runReceiver
 
-follow the code given in the tutorial to run the code, but instead, I 
+```
