@@ -363,5 +363,7 @@ $ ./gradlew runReceiveLogs 2>&1 | tee receiver2.txt
 > :runReceiveLogs
 ```
 
-The arguments ` 2>&1 | tee receiver1.txt`
+The arguments ` 2>&1 | tee receiver1.txt` saves the log output to a file, `2>&1` redirects the `stderr` to the standard 
+output `stdout`, i.e. merge the two outputs to the file, and `tee` reads the standard intput, then writes the output of
+a program to standard output and simultaneously copies it into the specified file `receiver1/2`.
 
