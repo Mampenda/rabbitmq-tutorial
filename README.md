@@ -367,3 +367,5 @@ The arguments ` 2>&1 | tee receiver1.txt` saves the log output to a file, `2>&1`
 output `stdout`, i.e. merge the two outputs to the file, and `tee` reads the standard intput, then writes the output of
 a program to standard output and simultaneously copies it into the specified file `receiver1/2`.
 
+### Problems
+I did not manage to list the bindings in console.
