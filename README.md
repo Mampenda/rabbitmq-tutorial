@@ -203,10 +203,10 @@ overcomplicated code, I decided to try again from scratch.
 This time, I did not waste my time overcomplicating things, I only added a few lines of code in the `build.gradle.kts` 
 file. 
 
-I added the (only) needed dependency with one line, `implementation("com.rabbitmq:amqp-client:5.22.0")`, instead 
+I added the needed dependencies with (only) one line, `implementation("com.rabbitmq:amqp-client:5.22.0")`, instead 
 of downloading the three `.jar`-files which were recommended in the tutorial. 
 
-I also added som `tasks` to run the code 
+I also added some `tasks` to run the code:
 
 ```
 tasks.register<JavaExec>("runSender"){
