@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 public class Worker {
     // Set up queue
     private final static String TASK_QUEUE_NAME = "hello";
+    private final static String DUARBLE_TASK_QUEUE_NAME = "task_queue";
 
     public static void main(String[] argv) throws Exception {
 
@@ -25,12 +26,15 @@ public class Worker {
         // Create the channel
         Channel channel = connection.createChannel();
 
-        // Declare a queue to receive from
-        channel.queueDeclare(TASK_QUEUE_NAME, false, false, false, null);
+        // Make sure that the queue will survive a RabbitMQ node restart by making it durable
+        boolean durable = true;
+
+        // Declare a durable queue to receive from
+        channel.queueDeclare(DUARBLE_TASK_QUEUE_NAME, durable, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-        // DeliverCallback interface to buffer the messages pushed to us by the server
-        channel.basicQos(1); // accept only one unack-ed message at a time (see below)
+        // DeliverCallback interface to buffer the messages pushed to us by the server (only accept 1 at a time)
+        channel.basicQos(1);
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
@@ -47,7 +51,7 @@ public class Worker {
         };
 
         // Manual message acknowledgements are turned on by default (change to true to turn off)
-        boolean autoAck = false; // acknowledgment is covered below
+        boolean autoAck = false;
         channel.basicConsume(TASK_QUEUE_NAME, autoAck, deliverCallback, consumerTag -> { });    }
 
     private static void doWork(String task) throws InterruptedException {
