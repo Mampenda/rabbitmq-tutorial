@@ -1,0 +1,20 @@
+Starting a Gradle Daemon, 1 busy and 2 stopped Daemons could not be reused, use --status for details
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+
+> Task :runReceiveLogs
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 'Alice'
+ [x] Received 'Bob'
+ [x] Received 'Charles'
+ [x] Received 'Diana'
+ [x] Received 'Eva'
+ [x] Received 'Frank'
+ [x] Received 'Gina'
+ [x] Received 'Henry'
+ [x] Received 'Inga'
+ [x] Received 'Jack'
+ [x] Received 'Klaus'
+ [x] Received 'Marge'
+ [x] Received 'Nina'

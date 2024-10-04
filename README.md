@@ -313,3 +313,55 @@ Starting a Gradle Daemon, 1 busy and 10 stopped Daemons could not be reused, use
 <=========----> 75% EXECUTING [5m 54s]
 > :runWorker
 ```
+
+---
+
+## Experiment 4: Topics
+
+For this experiment, I created two new classes `EmitLog` and `ReceiveLogs` which I also added `gradle tasks` for in the 
+build file. 
+
+I opened two terminals to have two `ReceiveLogs` running, and a third one to run `EmitLog`.
+This time both consumers received all the messages that was sent into the queue, instead of the round robin approach 
+that was used in experiment 3, so when I sent several messages, both receivers consumed them.
+
+**ReceiveLogs 1:**
+```
+$ ./gradlew runReceiveLogs 2>&1 | tee receiver1.txt
+
+> Task :runReceiveLogs
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 'info: Hello World!'
+ [x] Received 'info: Hello World!'
+ [x] Received 'Alice'
+ [x] Received 'Bob'
+ [x] Received 'Charles'
+ [x] Received 'Diana'
+ [x] Received 'Eva'
+ [x] Received 'Frank'
+ [x] Received 'Gina'
+<=========----> 75% EXECUTING [34m 24s]
+> :runReceiveLogs
+```
+
+**ReceiveLogs 2:**
+```
+$ ./gradlew runReceiveLogs 2>&1 | tee receiver2.txt
+
+> Task :runReceiveLogs
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 'info: Hello World!'
+ [x] Received 'info: Hello World!'
+ [x] Received 'Alice'
+ [x] Received 'Bob'
+ [x] Received 'Charles'
+ [x] Received 'Diana'
+ [x] Received 'Eva'
+ [x] Received 'Frank'
+ [x] Received 'Gina'
+<=========----> 75% EXECUTING [34m 24s]
+> :runReceiveLogs
+```
+
+The arguments ` 2>&1 | tee receiver1.txt`
+
