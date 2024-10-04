@@ -251,10 +251,10 @@ Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for de
 
 ## Experiment 3: Work Queues
 I created the two new java classes and added two new tasks in  `build.gradle.kts` to compile and run them. Then, I 
-opened three terminals, two receivers/workers/consumers and one sender/producer/publisher. I sent some messages(names) 
+opened three terminals, two receivers/workers/consumers and one sender. I sent some messages(names) 
 through and got the expected output. 
 
-**Producer**:
+**Sender**:
 ```
 $ ./gradlew runNewTask --args="Alice"
 Starting a Gradle Daemon, 2 busy and 10 stopped Daemons could not be reused, use --status for details
