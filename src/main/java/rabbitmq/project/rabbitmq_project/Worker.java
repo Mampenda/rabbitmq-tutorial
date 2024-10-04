@@ -9,7 +9,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Worker {
     // Set up queue
-    private final static String TASK_QUEUE_NAME = "hello";
+//    private final static String TASK_QUEUE_NAME = "hello";
     private final static String DUARBLE_TASK_QUEUE_NAME = "task_queue";
 
     public static void main(String[] argv) throws Exception {
@@ -52,7 +52,7 @@ public class Worker {
 
         // Manual message acknowledgements are turned on by default (change to true to turn off)
         boolean autoAck = false;
-        channel.basicConsume(TASK_QUEUE_NAME, autoAck, deliverCallback, consumerTag -> { });    }
+        channel.basicConsume(DUARBLE_TASK_QUEUE_NAME, autoAck, deliverCallback, consumerTag -> { });    }
 
     private static void doWork(String task) throws InterruptedException {
         for (char ch: task.toCharArray()) {

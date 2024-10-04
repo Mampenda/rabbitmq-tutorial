@@ -64,7 +64,7 @@ management website (which prompted for a username and password).
 
 --- 
 
-## Experiment 2: RabbitMQ tutorial - "Hello World!"
+## Experiment 2: Hello World
 When implementing the tutorial, I encountered my first mvobstacle when running
 
 `javac -cp amqp-client-5.22.0.jar Recv.java Send.java`
@@ -195,7 +195,7 @@ This time, the code compiled and I got two new files `Recv.class` and `Send-clas
 
 ---
 
-## Experiment 2: RabbitMQ tutorial - "Hello World!" (again)
+## Experiment 2: Hello World (again)
 
 I had many issues getting the code to run, and after several failed attempts, and spending a lot of time writing
 overcomplicated code, I decided to try again from scratch. 
@@ -245,4 +245,71 @@ Starting a Gradle Daemon, 1 busy Daemon could not be reused, use --status for de
 <=========----> 75% EXECUTING [1m 17s]
 > :runReceiver
 
+```
+
+---
+
+## Experiment 3: Work Queues
+I created the two new java classes and added two new tasks in  `build.gradle.kts` to compile and run them. Then, I 
+opened three terminals, two receivers/workers/consumers and one sender/producer/publisher. I sent some messages(names) 
+through and got the expected output. 
+
+**Producer**:
+```
+$ ./gradlew runNewTask --args="Alice"
+Starting a Gradle Daemon, 2 busy and 10 stopped Daemons could not be reused, use --status for details
+
+> Task :runNewTask
+ [x] Sent 'Alice'
+
+BUILD SUCCESSFUL in 32s
+3 actionable tasks: 1 executed, 2 up-to-date
+```
+
+**Worker 1:**
+```
+$ ./gradlew runWorker
+
+> Task :runWorker
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 'Alice'
+ [x] Done
+ [x] Received 'Charlie'
+ [x] Done
+ [x] Received 'Eva'
+ [x] Done
+ [x] Received 'Gina'
+ [x] Done
+ [x] Received 'Inga'
+ [x] Done
+ [x] Received 'Klaus'
+ [x] Done
+ [x] Received 'Nina'
+ [x] Done
+<=========----> 75% EXECUTING [5m 30s]
+> :runWorker
+
+```
+
+**Worker 2:**
+```
+$ ./gradlew runWorker
+Starting a Gradle Daemon, 1 busy and 10 stopped Daemons could not be reused, use --status for details
+
+> Task :runWorker
+ [*] Waiting for messages. To exit press CTRL+C
+ [x] Received 'Bob'
+ [x] Done
+ [x] Received 'Diana'
+ [x] Done
+ [x] Received 'Frank'
+ [x] Done
+ [x] Received 'Henry'
+ [x] Done
+ [x] Received 'Jack'
+ [x] Done
+ [x] Received 'Marge'
+ [x] Done
+<=========----> 75% EXECUTING [5m 54s]
+> :runWorker
 ```
