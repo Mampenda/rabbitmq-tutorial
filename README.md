@@ -65,7 +65,7 @@ management website (which prompted for a username and password).
 --- 
 
 ## Experiment 2: Hello World
-When implementing the tutorial, I encountered my first mvobstacle when running
+When implementing the tutorial, I encountered my first obstacle when running
 
 `javac -cp amqp-client-5.22.0.jar Recv.java Send.java`
 
@@ -322,7 +322,7 @@ For this experiment, I created two new classes `EmitLog` and `ReceiveLogs` which
 build file. 
 
 I opened two terminals to have two `ReceiveLogs` running, and a third one to run `EmitLog`.
-This time both consumers received all the messages that was sent into the queue, instead of the round robin approach 
+This time both consumers received all the messages that was sent into the queue, instead of the round-robin approach 
 that was used in experiment 3, so when I sent several messages, both receivers consumed them.
 
 **ReceiveLogs 1:**
@@ -364,7 +364,7 @@ $ ./gradlew runReceiveLogs 2>&1 | tee receiver2.txt
 ```
 
 The arguments ` 2>&1 | tee receiver1.txt` saves the log output to a file, `2>&1` redirects the `stderr` to the standard 
-output `stdout`, i.e. merge the two outputs to the file, and `tee` reads the standard intput, then writes the output of
+output `stdout`, i.e. merge the two outputs to the file, and `tee` reads the standard input, then writes the output of
 a program to standard output and simultaneously copies it into the specified file `receiver1/2`.
 
 ### Problems
