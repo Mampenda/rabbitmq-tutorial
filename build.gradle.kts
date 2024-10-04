@@ -63,3 +63,15 @@ tasks.register<JavaExec>("runWorker"){
 	mainClass.set("rabbitmq.project.rabbitmq_project.Worker")
 	classpath = sourceSets["main"].runtimeClasspath
 }
+
+tasks.register<JavaExec>("runEmitLog"){
+	group="rabbitmq.project"
+	mainClass.set("rabbitmq.project.rabbitmq_project.EmitLog")
+	classpath = sourceSets["main"].runtimeClasspath
+}
+
+tasks.register<JavaExec>("runReceiveLogs"){
+	group="rabbitmq.project"
+	mainClass.set("rabbitmq.project.rabbitmq_project.ReceiveLogs")
+	classpath = sourceSets["main"].runtimeClasspath
+}
